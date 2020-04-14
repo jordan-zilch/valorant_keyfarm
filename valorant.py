@@ -19,7 +19,7 @@ def main():
     if len(sys.argv) == 3:
         browser=sys.argv[2]
     DROPSENABLED_TAGID = "c2542d6d-cd10-4532-919b-3d19f30a768b"
-    
+
     while True:
         stream_to_watch = ""
         stream_to_watch_id = -1
@@ -43,7 +43,10 @@ def main():
             while live:
                 print(stream_to_watch + " still live")
                 # Heartbeat every 20 seconds to check that its live
-                b = helix.streams(user_id=stream_to_watch_id)
+                try:
+                    b = helix.streams(user_id=stream_to_watch_id)
+                except StreamNotFound:
+                    break
                 if len(b._data) >= 1:
                     live = b._data[0].type == "live"
                 else:
