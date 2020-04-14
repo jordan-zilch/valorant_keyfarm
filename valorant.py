@@ -44,7 +44,10 @@ def main():
                 print(stream_to_watch + " still live")
                 # Heartbeat every 20 seconds to check that its live
                 b = helix.streams(user_id=stream_to_watch_id)
-                live = b._data[0].type == "live"
+                if len(b._data) >= 1:
+                    live = b._data[0].type == "live"
+                else:
+                    live = False
                 time.sleep(20)
 
             os.system("pkill chrome")
