@@ -9,17 +9,17 @@ def usage():
     print("Either:\nvalorant.py {CLIENT_ID}\nvalorant.py {CLIENT_ID} {WEB_BROWSER}")
     print("See README.md")
 
-if len(sys.argv) < 2 or len(sys.argv) > 3:
-    usage()
-    sys.exit()
-
-client_id=sys.argv[1]
-browser='google-chrome'
-if len(sys.argv) == 3:
-    browser=sys.argv[2]
-DROPSENABLED_TAGID = "c2542d6d-cd10-4532-919b-3d19f30a768b"
-
 def main():
+    if len(sys.argv) < 2 or len(sys.argv) > 3:
+        usage()
+        sys.exit()
+
+    client_id=sys.argv[1]
+    browser='google-chrome'
+    if len(sys.argv) == 3:
+        browser=sys.argv[2]
+    DROPSENABLED_TAGID = "c2542d6d-cd10-4532-919b-3d19f30a768b"
+    
     while True:
         stream_to_watch = ""
         stream_to_watch_id = -1
