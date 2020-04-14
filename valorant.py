@@ -46,6 +46,7 @@ def main():
                 b = helix.streams(user_id=stream_to_watch_id)
                 live = b._data[0].type == "live"
                 time.sleep(20)
+
             os.system("pkill chrome")
 
 
