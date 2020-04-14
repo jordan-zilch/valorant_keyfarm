@@ -14,6 +14,9 @@ if len(sys.argv) < 2 or len(sys.argv) > 3:
     sys.exit()
 
 client_id=sys.argv[1]
+browser='google-chrome'
+if len(sys.argv) == 3:
+    browser=sys.argv[2]
 DROPSENABLED_TAGID = "c2542d6d-cd10-4532-919b-3d19f30a768b"
 
 def main():
@@ -26,13 +29,11 @@ def main():
         for stream in helix.streams(game_id=516575):
             if DROPSENABLED_TAGID in stream.data['tag_ids']:
                 # subprocess.check_call(['google-chrome', 'https://twitch.tv/' + stream.data['user_name']])
-                webbrowser.get('google-chrome').open('https://twitch.tv/' + stream.data['user_name'])
-                    
                 stream_to_watch = stream.data['user_name']
                 stream_to_watch_id = stream.data['user_id']
                 print("gonna watch " + stream_to_watch)
-                os.system("google-chrome " + "https://twitch.tv/" + stream.data['user_name'])
-                time.sleep(4)
+                webbrowser.get(browser).open('https://twitch.tv/' + stream.data['user_name'])    
+                # os.system("google-chrome " + "https://twitch.tv/" + stream.data['user_name'])
                 break
         print("watching " + stream_to_watch)
 
